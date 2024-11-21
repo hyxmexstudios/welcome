@@ -29,7 +29,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Contenedor del formulario */
         .login-container {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
@@ -45,10 +44,6 @@
             color: #333;
         }
 
-        .login-container input {
-            margin-bottom: 1rem;
-        }
-
         .login-container button {
             background-color: #6a11cb;
             color: white;
@@ -61,13 +56,6 @@
 
         .login-container button:hover {
             background-color: #2575fc;
-        }
-
-        .welcome-message {
-            display: none;
-            font-size: 1.5rem;
-            color: #333;
-            margin-top: 20px;
         }
     </style>
 </head>
@@ -85,48 +73,19 @@
             </div>
             <button type="submit" class="btn btn-primary">Entrar</button>
         </form>
-        <div id="welcomeMessage" class="welcome-message">
-            ¡Bienvenido al sistema!
-        </div>
     </div>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js"></script>
     <script>
-        // Configuración Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBISGP2J3zWVRF7fR-7IWL4O0C6wLSuaWk",
-            authDomain: "codigosojalafuncione.firebaseapp.com",
-            projectId: "codigosojalafuncione",
-            storageBucket: "codigosojalafuncione.firebasestorage.app",
-            messagingSenderId: "42021843470",
-            appId: "1:42021843470:web:22e0ab25a65be9e064825f",
-            measurementId: "G-7WP5JVZM7J"            
-        };
-
-        // Inicializar Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const messaging = firebase.messaging();
-
-        // Registrar el service worker para notificaciones
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./firebase-messaging-sw.js')
-                .then(registration => {
-                    console.log('Service Worker registrado con éxito:', registration);
-                })
-                .catch(err => console.error('Error al registrar el Service Worker:', err));
-        }
-
         // Manejo del formulario de inicio de sesión
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Previene el comportamiento por defecto del formulario
 
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Validación básica
             if (username === "admin" && password === "1234") {
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('welcomeMessage').style.display = 'block';
+                alert("Bienvenido, " + username + "!");
             } else {
                 alert("Usuario o contraseña incorrectos");
             }
