@@ -80,47 +80,25 @@
         </form>
     </div>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js"></script>
-    <script>
-        // Configuración Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBISGP2J3zWVRF7fR-7IWL4O0C6wLSuaWk",
-            authDomain: "codigosojalafuncione.firebaseapp.com",
-            projectId: "codigosojalafuncione",
-            storageBucket: "codigosojalafuncione.firebasestorage.app",
-            messagingSenderId: "42021843470",
-            appId: "1:42021843470:web:22e0ab25a65be9e064825f",
-            measurementId: "G-7WP5JVZM7J"            
-        };
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics-compat.js"></script>
 
-        // Inicializar Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const messaging = firebase.messaging();
+<script>
+    // Configuración Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyBISGP2J3zWVRF7fR-7IWL4O0C6wLSuaWk",
+        authDomain: "codigosojalafuncione.firebaseapp.com",
+        projectId: "codigosojalafuncione",
+        storageBucket: "codigosojalafuncione.firebasestorage.app",
+        messagingSenderId: "42021843470",
+        appId: "1:42021843470:web:22e0ab25a65be9e064825f",
+        measurementId: "G-7WP5JVZM7J"
+    };
 
-        // Manejo del formulario de inicio de sesión
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            if (username === "admin" && password === "1234") {
-                alert("Inicio de sesión exitoso");
-                // Redirigir a otro dashboard
-            } else {
-                alert("Usuario o contraseña incorrectos");
-            }
-        });
-
-        // Registrar el service worker para notificaciones
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('firebase-messaging-sw.js')
-                .then(registration => {
-                    console.log('Service Worker registrado con éxito:', registration);
-                })
-                .catch(err => console.error('Error al registrar el Service Worker:', err));
-        }
-    </script>
+    // Inicializar Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const analytics = firebase.analytics();
+</script>
 </body>
 </html>
